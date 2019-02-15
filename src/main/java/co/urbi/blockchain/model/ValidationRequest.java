@@ -43,7 +43,7 @@ public class ValidationRequest {
         BigInteger bigInteger = signedPrefixedMessageToKey(message, getSignatureData(signature));
         String recoveredAddress = toChecksumAddress(Keys.getAddress(bigInteger));
 
-        return address.equals(recoveredAddress);
+        return address.equals(recoveredAddress.toLowerCase());
 
     }
 

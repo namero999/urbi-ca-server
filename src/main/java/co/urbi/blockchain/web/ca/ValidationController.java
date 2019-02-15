@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 
 import java.math.BigInteger;
-import java.util.Map;
 
+import static co.urbi.blockchain.JSON.toJson;
 import static co.urbi.blockchain.contracts.Web3Credentials.registry;
 import static java.time.LocalDateTime.now;
 import static java.time.ZoneOffset.UTC;
@@ -18,8 +18,8 @@ import static java.time.temporal.ChronoUnit.YEARS;
 @RestController
 public class ValidationController {
 
-    @PostMapping("/validate")
-    public Map validate(@RequestBody ValidationRequest validationRequest) throws Exception {
+    @PostMapping(value = "/validate", produces = "application/json; charset=utf-8")
+    public String validate(@RequestBody ValidationRequest validationRequest) throws Exception {
 
         boolean valid = validationRequest.verifySignature();
 
@@ -38,7 +38,7 @@ public class ValidationController {
 
         }
 
-        return result;
+        return toJson(result);
 
     }
 

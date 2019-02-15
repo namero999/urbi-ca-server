@@ -14,7 +14,6 @@ wrapper {
 
 web3j {
     generatedPackageName = 'co.urbi.blockchain.contracts.generated'
-    excludedContracts = ['Mortal']
 }
 
 group 'co.urbi'
