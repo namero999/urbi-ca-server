@@ -1,0 +1,28 @@
+ext {
+
+    hikari = 'com.zaxxer:HikariCP:3.3.0'
+
+    def jackson_version = '2.9.8'
+    jackson = [
+            "com.fasterxml.jackson.core:jackson-core:$jackson_version",
+            "com.fasterxml.jackson.core:jackson-databind:$jackson_version",
+            "com.fasterxml.jackson.core:jackson-annotations:$jackson_version",
+            "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jackson_version",
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jackson_version",
+            "com.fasterxml.jackson.module:jackson-module-parameter-names:$jackson_version"
+    ]
+
+    junit = 'junit:junit:4.12'
+
+    def log4j2_version = '2.11.1'
+    log4j2 = [
+            "org.apache.logging.log4j:log4j-core:$log4j2_version",
+            'com.lmax:disruptor:3.4.2'
+    ]
+    log4j2_web = "org.apache.logging.log4j:log4j-web:$log4j2_version"
+
+    lombok = 'org.projectlombok:lombok:1.18.4'
+
+    postgres_jdbc = 'org.postgresql:postgresql:42.2.5'
+
+}

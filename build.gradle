@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'org.web3j' version '4.0.3'
+    id 'org.springframework.boot' version '2.1.2.RELEASE'
+}
+
+apply from: 'gradle/deps.gradle'
+apply plugin: 'io.spring.dependency-management'
+
+wrapper {
+    gradleVersion = '5.2'
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+web3j {
+    generatedPackageName = 'co.urbi.blockchain.contracts.generated'
+    excludedContracts = ['Mortal']
+}
+
+group 'co.urbi'
+version '1.0.0'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    annotationProcessor lombok
+    compileOnly lombok
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compile jackson
+
+    testCompile junit
+
+}
