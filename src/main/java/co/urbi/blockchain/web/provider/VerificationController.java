@@ -23,13 +23,9 @@ public class VerificationController {
 
         Tuple3<String, byte[], BigInteger> certification = registry.certifications(validationRequest.getAddress()).send();
 
-        Params result = new Params();
-
         Instant expiration = Instant.ofEpochSecond(certification.getValue3().longValue());
-        boolean valid = expiration.isAfter(now()) && Arrays.equals(validationRequest.hash(), certification.getValue2());
-        result.put("valid", valid);
 
-        return result;
+        return new Params().put("valid", expiration.isAfter(now()) && Arrays.equals(validationRequest.hash(), certification.getValue2()));
 
     }
 

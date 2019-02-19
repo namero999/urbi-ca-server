@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.MissingNode;
 import lombok.SneakyThrows;
-import lombok.experimental.UtilityClass;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
@@ -13,12 +12,11 @@ import static com.fasterxml.jackson.databind.MapperFeature.ACCEPT_CASE_INSENSITI
 import static com.fasterxml.jackson.databind.MapperFeature.SORT_PROPERTIES_ALPHABETICALLY;
 import static com.fasterxml.jackson.databind.SerializationFeature.*;
 
-@UtilityClass
 public class JSON {
 
-    private ObjectMapper MAPPER;
+    private static ObjectMapper MAPPER;
 
-    public void init(ObjectMapper mapper) {
+    public static void init(ObjectMapper mapper) {
 
         mapper.configure(ACCEPT_CASE_INSENSITIVE_ENUMS, true);
 
@@ -40,17 +38,17 @@ public class JSON {
     }
 
     @SneakyThrows
-    public String toJson(Object value) {
+    public static String toJson(Object value) {
         return MAPPER.writeValueAsString(value);
     }
 
     @SneakyThrows
-    public String toPrettyJson(Object value) {
+    public static String toPrettyJson(Object value) {
         return MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(value);
     }
 
     @SneakyThrows
-    public JsonNode fromJson(String content) {
+    public static JsonNode fromJson(String content) {
         return content == null ? MissingNode.getInstance() : MAPPER.readTree(content);
     }
 
