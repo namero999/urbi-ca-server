@@ -33,3 +33,11 @@ dependencies {
     compile jackson
 
 }
+
+task generateWrappers(type: Exec) {
+
+    commandLine './web3j-4.2.0/bin/web3j.bat', 'truffle', 'generate', '--javaTypes', './contracts/build/contracts/Registry.json',
+            '-p', 'co.urbi.contracts',
+            '-o', './src/main/java'
+
+}
