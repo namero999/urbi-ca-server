@@ -7,7 +7,8 @@
 .idea
 *.iml
 .DS_Store
-/*.json
 
-gradle.properties
 application.properties
+wallet*.json
+
+web3j*/

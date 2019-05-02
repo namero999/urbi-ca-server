@@ -1,6 +1,6 @@
-package co.urbi.blockchain.contracts;
+package co.urbi.backend.web;
 
-import co.urbi.blockchain.contracts.generated.Registry;
+import co.urbi.contracts.Registry;
 import org.web3j.crypto.Credentials;
 
 public class Web3Credentials {

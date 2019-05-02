@@ -1,7 +1,7 @@
-package co.urbi.blockchain.web.provider;
+package co.urbi.backend.web;
 
-import co.urbi.blockchain.model.Params;
-import co.urbi.blockchain.model.ValidationRequest;
+import co.urbi.backend.model.Params;
+import co.urbi.backend.model.ValidationRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,11 +12,11 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.Map;
 
-import static co.urbi.blockchain.contracts.Web3Credentials.registry;
+import static co.urbi.backend.web.Web3Credentials.registry;
 import static java.time.Instant.now;
 
 @RestController
-public class VerificationController {
+public class ProviderController {
 
     @PostMapping("/signup")
     public Map validate(@RequestBody ValidationRequest validationRequest) throws Exception {

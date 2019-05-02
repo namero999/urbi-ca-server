@@ -1,7 +1,7 @@
-package co.urbi.blockchain.web.ca;
+package co.urbi.backend.web;
 
-import co.urbi.blockchain.model.Params;
-import co.urbi.blockchain.model.ValidationRequest;
+import co.urbi.backend.model.Params;
+import co.urbi.backend.model.ValidationRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,14 +9,14 @@ import org.web3j.protocol.core.methods.response.TransactionReceipt;
 
 import java.math.BigInteger;
 
-import static co.urbi.blockchain.JSON.toJson;
-import static co.urbi.blockchain.contracts.Web3Credentials.registry;
+import static co.urbi.backend.JSON.toJson;
+import static co.urbi.backend.web.Web3Credentials.registry;
 import static java.time.LocalDateTime.now;
 import static java.time.ZoneOffset.UTC;
 import static java.time.temporal.ChronoUnit.YEARS;
 
 @RestController
-public class ValidationController {
+public class CaController {
 
     @PostMapping(value = "/validate", produces = "application/json; charset=utf-8")
     public String validate(@RequestBody ValidationRequest validationRequest) throws Exception {

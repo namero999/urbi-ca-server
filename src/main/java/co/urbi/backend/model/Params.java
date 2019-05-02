@@ -1,4 +1,4 @@
-package co.urbi.blockchain.model;
+package co.urbi.backend.model;
 
 import lombok.NoArgsConstructor;
 

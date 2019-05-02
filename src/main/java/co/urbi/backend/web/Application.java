@@ -1,8 +1,7 @@
-package co.urbi.blockchain.web;
+package co.urbi.backend.web;
 
-import co.urbi.blockchain.JSON;
-import co.urbi.blockchain.contracts.Web3Credentials;
-import co.urbi.blockchain.contracts.generated.Registry;
+import co.urbi.backend.JSON;
+import co.urbi.contracts.Registry;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +43,10 @@ public class Application {
         Web3j web3j = Web3j.build(new HttpService($("web3.network")));
         log.info("Connected to Ethereum client version: " + web3j.web3ClientVersion().send().getWeb3ClientVersion());
 
-        Web3Credentials.caCreds = loadCredentials($("web3.wallet.password"), $("web3.wallet.ca"));
-        Web3Credentials.userCreds = loadCredentials($("web3.wallet.password"), $("web3.wallet.user"));
-        Web3Credentials.providerCreds = loadCredentials($("web3.wallet.password"), $("web3.wallet.provider"));
+        String walletPwd = $("web3.wallet.password");
+        Web3Credentials.caCreds = loadCredentials(walletPwd, loadWallet($("web3.wallet.ca")));
+        Web3Credentials.userCreds = loadCredentials(walletPwd, loadWallet($("web3.wallet.user")));
+        Web3Credentials.providerCreds = loadCredentials(walletPwd, loadWallet($("web3.wallet.provider")));
         log.info("Wallet credentials loaded");
 
         ContractGasProvider contractGasProvider = new DefaultGasProvider();
@@ -54,6 +54,10 @@ public class Application {
 
         return web3j;
 
+    }
+
+    private String loadWallet(String wallet) {
+        return this.getClass().getResource("/" + wallet).getFile();
     }
 
     private String $(String key) {

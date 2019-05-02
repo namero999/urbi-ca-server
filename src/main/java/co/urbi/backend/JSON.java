@@ -1,4 +1,4 @@
-package co.urbi.blockchain;
+package co.urbi.backend;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
