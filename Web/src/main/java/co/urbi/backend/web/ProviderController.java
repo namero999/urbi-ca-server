@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.Map;
 
-import static co.urbi.backend.web.Web3Credentials.registry;
+import static co.urbi.backend.web.Blockchain.registry;
 import static java.time.Instant.now;
 
 @RestController

@@ -10,7 +10,7 @@ import org.web3j.protocol.core.methods.response.TransactionReceipt;
 
 import java.math.BigInteger;
 
-import static co.urbi.backend.web.Web3Credentials.registry;
+import static co.urbi.backend.web.Blockchain.registry;
 import static co.urbi.json.JSON.toJson;
 import static java.time.LocalDateTime.now;
 import static java.time.ZoneOffset.UTC;
