@@ -1,0 +1,13 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.9.RELEASE'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compile web3j
+
+}

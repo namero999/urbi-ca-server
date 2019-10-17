@@ -23,9 +23,9 @@ public class ProviderController {
 
         Tuple3<String, byte[], BigInteger> certification = registry.certifications(validationRequest.getAddress()).send();
 
-        Instant expiration = Instant.ofEpochSecond(certification.getValue3().longValue());
+        Instant expiration = Instant.ofEpochSecond(certification.component3().longValue());
 
-        return new Params().put("valid", expiration.isAfter(now()) && Arrays.equals(validationRequest.hash(), certification.getValue2()));
+        return new Params().put("valid", expiration.isAfter(now()) && Arrays.equals(validationRequest.hash(), certification.component2()));
 
     }
 

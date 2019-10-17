@@ -1,6 +1,6 @@
 package co.urbi.backend.model;
 
-import co.urbi.backend.JSON;
+import co.urbi.json.JSON;
 import lombok.Data;
 import lombok.SneakyThrows;
 import org.web3j.crypto.Keys;

@@ -21,7 +21,9 @@ import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.RemoteCall;
+import org.web3j.protocol.core.RemoteFunctionCall;
 import org.web3j.protocol.core.methods.request.EthFilter;
+import org.web3j.protocol.core.methods.response.BaseEventResponse;
 import org.web3j.protocol.core.methods.response.Log;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tuples.generated.Tuple3;
@@ -36,8 +38,9 @@ import org.web3j.tx.gas.ContractGasProvider;
  * or the org.web3j.codegen.SolidityFunctionWrapperGenerator in the 
  * <a href="https://github.com/web3j/web3j/tree/master/codegen">codegen module</a> to update.
  *
- * <p>Generated with web3j version 4.2.0.
+ * <p>Generated with web3j version 4.5.5.
  */
+@SuppressWarnings("rawtypes")
 public class Registry extends Contract {
     private static final String BINARY = "0x608060405234801561001057600080fd5b506100293361002e640100000000026401000000009004565b6101e8565b61004f81600061009564010000000002610715179091906401000000009004565b8073ffffffffffffffffffffffffffffffffffffffff167f22380c05984257a1cb900161c713dd71d39e74820f1aea43bd3f1bdd2096129960405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156100d157600080fd5b6100ea8282610154640100000000026401000000009004565b1515156100f657600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415151561019157600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6108a0806101f76000396000f3fe608060405234801561001057600080fd5b50600436106100b0576000357c0100000000000000000000000000000000000000000000000000000000900480634c5a628c116100835780634c5a628c1461022b5780637362d9c814610235578063bb5f747b14610279578063d6cd9473146102d5578063eaf914a1146102df576100b0565b806310154bad146100b5578063236e0929146100f9578063291d95491461018b5780633af32abf146101cf575b600080fd5b6100f7600480360360208110156100cb57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610337565b005b61013b6004803603602081101561010f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610357565b604051808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001838152602001828152602001935050505060405180910390f35b6101cd600480360360208110156101a157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103a1565b005b610211600480360360208110156101e557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103c1565b604051808215151515815260200191505060405180910390f35b6102336103de565b005b6102776004803603602081101561024b57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506103e9565b005b6102bb6004803603602081101561028f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610409565b604051808215151515815260200191505060405180910390f35b6102dd610426565b005b610335600480360360608110156102f557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291908035906020019092919080359060200190929190505050610431565b005b61034033610409565b151561034b57600080fd5b61035481610519565b50565b60026020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060010154908060020154905083565b6103aa33610409565b15156103b557600080fd5b6103be81610573565b50565b60006103d78260016105cd90919063ffffffff16565b9050919050565b6103e733610661565b565b6103f233610409565b15156103fd57600080fd5b610406816106bb565b50565b600061041f8260006105cd90919063ffffffff16565b9050919050565b61042f33610573565b565b61043a336103c1565b151561044557600080fd5b6060604051908101604052803373ffffffffffffffffffffffffffffffffffffffff16815260200183815260200182815250600260008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020155905050505050565b61052d81600161071590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fee1504a83b6d4a361f4c1dc78ab59bfa30d6a3b6612c403e86bb01ef2984295f60405160405180910390a250565b6105878160016107c590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f270d9b30cf5b0793bbfd54c9d5b94aeb49462b8148399000265144a8722da6b660405160405180910390a250565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff161415151561060a57600080fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6106758160006107c590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f0a8eb35e5ca14b3d6f28e4abf2f128dbab231a58b56e89beb5d636115001e16560405160405180910390a250565b6106cf81600061071590919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f22380c05984257a1cb900161c713dd71d39e74820f1aea43bd3f1bdd2096129960405160405180910390a250565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561075157600080fd5b61075b82826105cd565b15151561076757600080fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561080157600080fd5b61080b82826105cd565b151561081657600080fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550505056fea165627a7a72305820178e541c61bd26d6af474b570ebfa7cba1604ba3bc3d60128d2e2541a0aff0f70029";
 
@@ -99,7 +102,7 @@ public class Registry extends Contract {
         super(BINARY, contractAddress, web3j, transactionManager, contractGasProvider);
     }
 
-    public RemoteCall<TransactionReceipt> addWhitelisted(String account) {
+    public RemoteFunctionCall<TransactionReceipt> addWhitelisted(String account) {
         final Function function = new Function(
                 FUNC_ADDWHITELISTED, 
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.Address(account)), 
@@ -107,11 +110,11 @@ public class Registry extends Contract {
         return executeRemoteCallTransaction(function);
     }
 
-    public RemoteCall<Tuple3<String, byte[], BigInteger>> certifications(String param0) {
+    public RemoteFunctionCall<Tuple3<String, byte[], BigInteger>> certifications(String param0) {
         final Function function = new Function(FUNC_CERTIFICATIONS, 
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.Address(param0)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}, new TypeReference<Bytes32>() {}, new TypeReference<Uint256>() {}));
-        return new RemoteCall<Tuple3<String, byte[], BigInteger>>(
+        return new RemoteFunctionCall<Tuple3<String, byte[], BigInteger>>(function,
                 new Callable<Tuple3<String, byte[], BigInteger>>() {
                     @Override
                     public Tuple3<String, byte[], BigInteger> call() throws Exception {
@@ -124,7 +127,7 @@ public class Registry extends Contract {
                 });
     }
 
-    public RemoteCall<TransactionReceipt> removeWhitelisted(String account) {
+    public RemoteFunctionCall<TransactionReceipt> removeWhitelisted(String account) {
         final Function function = new Function(
                 FUNC_REMOVEWHITELISTED, 
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.Address(account)), 
@@ -132,14 +135,14 @@ public class Registry extends Contract {
         return executeRemoteCallTransaction(function);
     }
 
-    public RemoteCall<Boolean> isWhitelisted(String account) {
+    public RemoteFunctionCall<Boolean> isWhitelisted(String account) {
         final Function function = new Function(FUNC_ISWHITELISTED, 
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.Address(account)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Bool>() {}));
         return executeRemoteCallSingleValueReturn(function, Boolean.class);
     }
 
-    public RemoteCall<TransactionReceipt> renounceWhitelistAdmin() {
+    public RemoteFunctionCall<TransactionReceipt> renounceWhitelistAdmin() {
         final Function function = new Function(
                 FUNC_RENOUNCEWHITELISTADMIN, 
                 Arrays.<Type>asList(), 
@@ -147,7 +150,7 @@ public class Registry extends Contract {
         return executeRemoteCallTransaction(function);
     }
 
-    public RemoteCall<TransactionReceipt> addWhitelistAdmin(String account) {
+    public RemoteFunctionCall<TransactionReceipt> addWhitelistAdmin(String account) {
         final Function function = new Function(
                 FUNC_ADDWHITELISTADMIN, 
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.Address(account)), 
@@ -155,14 +158,14 @@ public class Registry extends Contract {
         return executeRemoteCallTransaction(function);
     }
 
-    public RemoteCall<Boolean> isWhitelistAdmin(String account) {
+    public RemoteFunctionCall<Boolean> isWhitelistAdmin(String account) {
         final Function function = new Function(FUNC_ISWHITELISTADMIN, 
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.Address(account)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Bool>() {}));
         return executeRemoteCallSingleValueReturn(function, Boolean.class);
     }
 
-    public RemoteCall<TransactionReceipt> renounceWhitelisted() {
+    public RemoteFunctionCall<TransactionReceipt> renounceWhitelisted() {
         final Function function = new Function(
                 FUNC_RENOUNCEWHITELISTED, 
                 Arrays.<Type>asList(), 
@@ -294,7 +297,7 @@ public class Registry extends Contract {
         return whitelistAdminRemovedEventFlowable(filter);
     }
 
-    public RemoteCall<TransactionReceipt> addCertification(String certifier, byte[] proof, BigInteger expirationDate) {
+    public RemoteFunctionCall<TransactionReceipt> addCertification(String certifier, byte[] proof, BigInteger expirationDate) {
         final Function function = new Function(
                 FUNC_ADDCERTIFICATION, 
                 Arrays.<Type>asList(new org.web3j.abi.datatypes.Address(certifier), 
@@ -348,27 +351,19 @@ public class Registry extends Contract {
         return _addresses.get(networkId);
     }
 
-    public static class WhitelistedAddedEventResponse {
-        public Log log;
-
+    public static class WhitelistedAddedEventResponse extends BaseEventResponse {
         public String account;
     }
 
-    public static class WhitelistedRemovedEventResponse {
-        public Log log;
-
+    public static class WhitelistedRemovedEventResponse extends BaseEventResponse {
         public String account;
     }
 
-    public static class WhitelistAdminAddedEventResponse {
-        public Log log;
-
+    public static class WhitelistAdminAddedEventResponse extends BaseEventResponse {
         public String account;
     }
 
-    public static class WhitelistAdminRemovedEventResponse {
-        public Log log;
-
+    public static class WhitelistAdminRemovedEventResponse extends BaseEventResponse {
         public String account;
     }
 }

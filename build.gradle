@@ -1,43 +1,42 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '2.1.4.RELEASE'
-}
-
 apply from: 'gradle/deps.gradle'
-apply plugin: 'io.spring.dependency-management'
 
 wrapper {
-    gradleVersion = '5.4'
+    gradleVersion = '5.6.2'
     distributionType = Wrapper.DistributionType.ALL
 }
 
-group 'co.urbi'
-version '1.0.0'
+subprojects {
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+    apply plugin: 'java'
 
-repositories {
-    mavenCentral()
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    group 'co.urbi'
+    version '1.0.0'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+        annotationProcessor lombok
+        compileOnly lombok
+
+        compile project(':JSON')
+
+    }
+
 }
 
-dependencies {
+task generateContractWrapper(type: Exec) {
 
-    annotationProcessor lombok
-    compileOnly lombok
-
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-
-    compile 'org.web3j:core:4.2.0'
-
-    compile jackson
-
-}
-
-task generateWrappers(type: Exec) {
-
-    commandLine './web3j-4.2.0/bin/web3j.bat', 'truffle', 'generate', '--javaTypes', './contracts/build/contracts/Registry.json',
-            '-p', 'co.urbi.contracts',
-            '-o', './src/main/java'
+    commandLine System.getProperty('os.name').toLowerCase().contains('windows')
+            ? ['web3j-4.5.5/bin/web3j.bat', 'truffle', 'generate', '--javaTypes',
+               'contracts/build/contracts/Registry.json',
+               '-p', 'co.urbi.contracts',
+               '-o', 'Web/src/main/java']
+            : 'web3j-4.5.5/bin/web3j truffle generate --javaTypes contracts/build/contracts/Registry.json -p co.urbi.contracts -o Web/src/main/java'
 
 }
