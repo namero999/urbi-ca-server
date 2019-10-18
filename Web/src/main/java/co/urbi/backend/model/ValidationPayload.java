@@ -2,12 +2,8 @@ package co.urbi.backend.model;
 
 import lombok.Data;
 
-import java.util.Map;
-
 @Data
-public class ValidationPayload {
-
-    String nonce;
+public class ValidationPayload extends WithNonce {
 
     String firstName;
     String lastName;
@@ -18,17 +14,11 @@ public class ValidationPayload {
     String birthProvince;
     String birthLocality;
 
-    String address;
-    String zip;
-    String city;
-    String country;
+    Address residenceAddress;
+    Address billingAddress;
 
     String phoneNumber;
 
-    String dlNumber;
-    String dlIssuer;
-    String dlIssueDate;
-    String dlExpirationDate;
-    Map<String, Boolean> dlLevels;
+    DrivingLicense drivingLicense;
 
 }

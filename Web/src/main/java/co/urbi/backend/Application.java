@@ -1,4 +1,4 @@
-package co.urbi.backend.web;
+package co.urbi.backend;
 
 import co.urbi.backend.events.AdminAdded;
 import co.urbi.backend.events.AdminRemoved;
@@ -40,18 +40,10 @@ public class Application {
     }
 
     @Bean
-    @Primary
-    public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
-        ObjectMapper mapper = builder.build();
-        JSON.init(mapper);
-        return mapper;
-    }
-
-    @Bean
     @SneakyThrows
     public Web3j web3j() {
 
-        final String network = "web3.network.goerli.ws";
+        final String network = "web3.network.rinkeby.ws";
 
         Web3j web3j = startWeb3j(network);
         loadCredentials();
@@ -65,13 +57,14 @@ public class Application {
 
     }
 
+    @SneakyThrows
     private void loadContracts(Web3j web3j) {
 
         ContractGasProvider contractGasProvider = new DefaultGasProvider();
 
-        // Web3Credentials.registry = Registry.deploy(web3j, Web3Credentials.caCreds, contractGasProvider).send();
-        // System.out.println(Web3Credentials.registry.getContractAddress());
-        Blockchain.registry = Registry.load($("web3.registry.address.goerli"), web3j, Blockchain.caCreds, contractGasProvider);
+//        Blockchain.registry = Registry.deploy(web3j, Blockchain.caCreds, contractGasProvider).send();
+//        log.info("Deployed contract at " + Blockchain.registry.getContractAddress());
+        Blockchain.registry = Registry.load($("web3.registry.address.rinkeby"), web3j, Blockchain.caCreds, contractGasProvider);
 
     }
 
@@ -110,8 +103,12 @@ public class Application {
         return this.getClass().getResource("/" + wallet).getFile();
     }
 
-    private String $(String key) {
-        return env.getProperty(key);
+    @Bean
+    @Primary
+    public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
+        ObjectMapper mapper = builder.build();
+        JSON.init(mapper);
+        return mapper;
     }
 
     @PreDestroy
@@ -119,6 +116,10 @@ public class Application {
         log.info("Stopping...");
         if (Blockchain.web3j != null)
             Blockchain.web3j.shutdown();
+    }
+
+    private String $(String key) {
+        return env.getProperty(key);
     }
 
 }

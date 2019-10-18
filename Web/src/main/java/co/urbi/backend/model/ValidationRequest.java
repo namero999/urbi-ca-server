@@ -19,9 +19,9 @@ import static org.web3j.utils.Numeric.toHexString;
 @Data
 public class ValidationRequest {
 
-    String address;
-    ValidationPayload payload;
-    String signature;
+    private String address;
+    private String signature;
+    private ValidationPayload payload;
 
     public byte[] hash() {
         return sha3(getPayloadBytes());

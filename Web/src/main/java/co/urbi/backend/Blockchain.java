@@ -1,4 +1,4 @@
-package co.urbi.backend.web;
+package co.urbi.backend;
 
 import co.urbi.contracts.Registry;
 import org.web3j.crypto.Credentials;

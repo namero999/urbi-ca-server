@@ -8,6 +8,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    compile project(':HTTP')
     compile web3j
 
 }
